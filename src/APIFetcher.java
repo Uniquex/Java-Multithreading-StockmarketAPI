@@ -7,8 +7,7 @@ import jdk.nashorn.internal.parser.JSONParser;
 
 public class APIFetcher implements Runnable {
 
-    // 7
-    private final String apiKEY = "st8QyFGnDamzVaazAxK";
+    private final String apiKEY = "st8QyFGnDamzVaazAxK7";
     private String url;
 
     private boolean isRunning;
@@ -20,14 +19,12 @@ public class APIFetcher implements Runnable {
     @Override
     public void run() {
 
-        StockData sdata = JsParser.parse(this.url);
 
+        StockData sdata = JsParser.parse("https://www.quandl.com/api/v3/datasets/WIKI/FB.json?api_key="+this.apiKEY);
 
+        InfluxCon dbcon = new InfluxCon(sdata.getName(), sdata);
+        dbcon.writetoDB(JsParser.parse(this.url));
     }
-
-
-
-
 
     public void setRunning(Boolean status)
     {

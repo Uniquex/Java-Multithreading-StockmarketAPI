@@ -9,6 +9,8 @@ public class Runner {
 
         StockData atx =  JsParser.parse("https://www.quandl.com/api/v3/datasets/WIKI/GOOGL.json?api_key=st8QyFGnDamzVaazAxK7");
 
+        //InfluxCon influxcon = new InfluxCon();
+
 
         System.out.println("fam");
     }
