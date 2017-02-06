@@ -20,7 +20,7 @@ public class APIFetcher implements Runnable {
     public void run() {
 
 
-        StockData sdata = JsParser.parse("https://www.quandl.com/api/v3/datasets/WIKI/FB.json?api_key="+this.apiKEY);
+        StockData sdata = JsParser.parse(this.url+this.apiKEY);
 
         InfluxCon dbcon = new InfluxCon(sdata.getName(), sdata);
         dbcon.writetoDB(JsParser.parse(this.url));

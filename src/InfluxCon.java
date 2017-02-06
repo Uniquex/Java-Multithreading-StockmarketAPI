@@ -12,15 +12,15 @@ import java.util.concurrent.TimeUnit;
 
 
 
-public class InfluxCon implements Runnable{
+public class InfluxCon{
 
     private String point;
     private StockData sdata;
 
     public InfluxCon(String point, StockData sdata){
-        InfluxDB influxDB = InfluxDBFactory.connect("http://192.168.1.100:8086", "root", "");
-        String dbName = "aTimeSeries";
-        //TODO influxDB.createDatabase("Stock");
+        InfluxDB influxDB = InfluxDBFactory.connect("http://vhome.pw:8086", "root", "");
+        String dbName = "Stock";
+        influxDB.createDatabase("Stock");
         this.point = point;
         this.sdata = sdata;
     }
@@ -42,10 +42,5 @@ public class InfluxCon implements Runnable{
                 pexc.getMessage();
             }
         }
-    }
-
-    @Override
-    public void run() {
-        writetoDB(sdata);
     }
 }
